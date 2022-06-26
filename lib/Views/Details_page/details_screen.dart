@@ -32,6 +32,8 @@ class DetailsScreen extends StatelessWidget {
         DocumentCategory? category;
         DocumentModel documentModel;
 
+       String name  ='asl';
+      
         try {
           category = box.getAt(categoryIndex);
 
