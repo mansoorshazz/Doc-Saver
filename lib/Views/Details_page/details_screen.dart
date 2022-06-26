@@ -32,8 +32,6 @@ class DetailsScreen extends StatelessWidget {
         DocumentCategory? category;
         DocumentModel documentModel;
 
-       String name  ='asl';
-      
         try {
           category = box.getAt(categoryIndex);
 
@@ -91,7 +89,7 @@ class DetailsScreen extends StatelessWidget {
   }
 
 // =================================================================================================================
-// This method  is used to show the appbar and
+// This method  is used to show the appbar and the popmenubutton.
 
   AppBar buildAppbar(BuildContext context,
       {required DocumentModel documentModel,
@@ -154,12 +152,13 @@ Description  : ${documentModel.description}''',
                 _deleteDocument(
                   context,
                   deleteFunction: () async {
-                    categorychangingBloc.add(ChangeIndexEvent(index: 0));
+                    categorychangingBloc.add(const ChangeIndexEvent(index: 0));
 
                     await box.deleteAt(categoryIndex);
 
                     Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => const HomeScreen()),
                         (route) => false);
                   },
                 );

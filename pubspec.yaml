@@ -38,7 +38,7 @@ dependencies:
   hive_flutter: ^1.1.0
   date_time_picker: ^2.1.0
   intl: ^0.17.0
-  image_picker: ^0.8.4+3
+  image_picker: 0.8.5
   equatable: ^2.0.3
   flutter_bloc: ^8.0.1
   hydrated_bloc: ^8.1.0
