@@ -10,8 +10,6 @@ class CategorychangingBloc
     on<ChangeIndexEvent>(_changeIndex);
   }
 
-
-
 // ======================================================================================================================================================
 // This method is used to change the category using index. When the user click the next category type the function will be called and the index change.
 
@@ -23,6 +21,4 @@ class CategorychangingBloc
 
     emit(CategorychangingState(index: index));
   }
-
-
 }

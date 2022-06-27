@@ -4,7 +4,7 @@ import 'package:docs_saver/Model/document_model.dart';
 import 'package:docs_saver/Views/Add%20details/add_edit_details.dart';
 import 'package:docs_saver/Views/Details_page/Widgets/build_custom_text.dart';
 import 'package:docs_saver/Views/Home/home.dart';
-import 'package:docs_saver/Views/common_widgets/dialog_box.dart';
+import 'package:docs_saver/Views/Widgets/dialog_box.dart';
 import 'package:docs_saver/core/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +16,7 @@ class DetailsScreen extends StatelessWidget {
   final int categoryIndex;
   final int itemINdex;
 
-  DetailsScreen({
+  const DetailsScreen({
     Key? key,
     required this.categoryIndex,
     required this.itemINdex,
@@ -170,7 +170,7 @@ Description  : ${documentModel.description}''',
                   context,
                   deleteFunction: () async {
                     categorychangingBloc.add(
-                      ChangeIndexEvent(
+                      const ChangeIndexEvent(
                         index: 0,
                       ),
                     );
@@ -184,7 +184,9 @@ Description  : ${documentModel.description}''',
                     );
 
                     Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                        MaterialPageRoute(
+                          builder: (context) => const HomeScreen(),
+                        ),
                         (route) => false);
                   },
                 );

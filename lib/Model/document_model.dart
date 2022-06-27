@@ -2,7 +2,6 @@
 // This class used to store the type of document and documents.
 
 import 'package:hive/hive.dart';
-
 part 'document_model.g.dart';
 
 @HiveType(typeId: 0)

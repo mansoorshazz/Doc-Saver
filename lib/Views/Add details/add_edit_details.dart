@@ -5,7 +5,7 @@ import 'package:docs_saver/Bloc/radiobutton/radiobutton_bloc.dart';
 import 'package:docs_saver/Model/document_model.dart';
 import 'package:docs_saver/Views/Add%20details/Widgets/build_textformfield.dart';
 import 'package:docs_saver/Views/Add%20details/Widgets/build_title.dart';
-import 'package:docs_saver/Views/common_widgets/dialog_box.dart';
+import 'package:docs_saver/Views/Widgets/dialog_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
@@ -112,7 +112,6 @@ class _AddAndEditDetailsScreenState extends State<AddAndEditDetailsScreen> {
     expirydateBloc.state.selectDate = "";
     addCategoryBloc.state.newAdded = "Add new one";
     radiobuttonBloc.state.selectedIndex = 0;
-
     titleController.dispose();
     descriptionController.dispose();
 
@@ -201,9 +200,11 @@ class _AddAndEditDetailsScreenState extends State<AddAndEditDetailsScreen> {
             groupValue: selectedIndex,
             title: Text(priorityTitles[index]),
             onChanged: (int? value) {
-              print(value.toString());
-              radiobuttonBloc
-                  .add(ChangeRadioButtonIndex(selectedIndex: value!));
+              radiobuttonBloc.add(
+                ChangeRadioButtonIndex(
+                  selectedIndex: value!,
+                ),
+              );
             },
           );
         },
@@ -230,10 +231,6 @@ class _AddAndEditDetailsScreenState extends State<AddAndEditDetailsScreen> {
               return;
             }
 
-            // if (categoryName == "Not selected" || categoryName.isEmpty) {
-
-            // }
-
             if (isValid) {
               List<String> imagesPath =
                   imageBloc.state.imageFiles.map((e) => e.path).toList();
@@ -254,10 +251,6 @@ class _AddAndEditDetailsScreenState extends State<AddAndEditDetailsScreen> {
                 List<DocumentModel> documentModels =
                     box.values.toList()[categoryIndex].documents;
 
-                print('updating');
-
-                print("index : $categoryIndex");
-
                 if (widget.isEditing) {
                   documentModels[widget.itemIndex] = DocumentModel(
                     documentImagePath: imagesPath,
@@ -270,7 +263,9 @@ class _AddAndEditDetailsScreenState extends State<AddAndEditDetailsScreen> {
                   await box.putAt(
                     categoryIndex,
                     DocumentCategory(
-                        categoryName: categoryName, documents: documentModels),
+                      categoryName: categoryName,
+                      documents: documentModels,
+                    ),
                   );
                 } else {
                   await box.putAt(
@@ -291,7 +286,6 @@ class _AddAndEditDetailsScreenState extends State<AddAndEditDetailsScreen> {
                   );
                 }
               } else {
-                print('adding to box');
                 await box.add(
                   DocumentCategory(
                     categoryName: categoryName,
